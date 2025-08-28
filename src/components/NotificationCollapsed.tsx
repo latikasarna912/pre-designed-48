@@ -26,7 +26,7 @@ const NotificationCollapsed = ({
     return text.length > maxLength ? text.slice(0, maxLength) + "…" : text;
   };
 
-  const truncatedTitle = truncateText(title, 38);
+  const truncatedTitle = title; // Allow title to wrap to next line
   const truncatedBody = truncateText(body, 84);
 
   // Process title to highlight "TODAY!" in red
