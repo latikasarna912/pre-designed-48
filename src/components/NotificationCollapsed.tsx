@@ -59,7 +59,10 @@ const NotificationCollapsed = ({
               className="w-4 h-4 rounded-sm"
             />
           )}
-          <span className="text-[13px] text-black" style={{ opacity: 0.88 }}>
+          <span 
+            className={`text-[12px] ${appName === 'Moneyview' ? 'text-[#144835]' : 'text-black'}`}
+            style={{ opacity: appName === 'Moneyview' ? 1 : 0.88 }}
+          >
             {appName} • {category} • {timeAgo}
           </span>
           <button className="ml-auto">

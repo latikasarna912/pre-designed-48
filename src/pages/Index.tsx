@@ -16,8 +16,8 @@ const Index = () => {
             timeAgo="2 minutes ago"
             title="🚨 Your car insurance is expiring TODAY!"
             body="Your MARUTI SUZUKI INDIA LTD has been with you through thick & thin. Don't leave..."
-            appIconUrl="/lovable-uploads/2b6e3415-c979-4666-a422-23a5ec3a2571.png"
-            imageUrl="/lovable-uploads/2b6e3415-c979-4666-a422-23a5ec3a2571.png"
+            appIconUrl="/lovable-uploads/bf417eb7-9e63-40ea-9322-fced316a179c.png"
+            imageUrl="/lovable-uploads/58197f8f-edf2-465a-89f1-69ebb04e4d5f.png"
           />
           
           <NotificationCollapsed
