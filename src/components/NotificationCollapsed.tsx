@@ -9,6 +9,7 @@ interface NotificationCollapsedProps {
   appIconUrl?: string;
   imageUrl?: string;
   className?: string;
+  titleLimit?: number; // visual truncation limit; does not affect source text
 }
 
 const NotificationCollapsed = ({
@@ -20,6 +21,7 @@ const NotificationCollapsed = ({
   appIconUrl,
   imageUrl,
   className = "",
+  titleLimit,
 }: NotificationCollapsedProps) => {
   // Truncate text to specified character limits (excluding emojis for title)
   const truncateText = (text: string, maxLength: number, excludeEmojis = false) => {
@@ -38,7 +40,8 @@ const NotificationCollapsed = ({
     return text.length > maxLength ? text.slice(0, maxLength) + "…" : text;
   };
 
-  const truncatedTitle = title; // Allow title to wrap to next line
+  const effectiveTitleLimit = typeof titleLimit === 'number' ? titleLimit : 38;
+  const truncatedTitle = truncateText(title, effectiveTitleLimit, true);
   const truncatedBody = truncateText(body, 84);
 
   return (
