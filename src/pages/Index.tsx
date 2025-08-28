@@ -11,17 +11,18 @@ const TITLE_LIMIT = 38; // visual limit only, component truncates
 const BODY_LIMIT = 84;  // visual limit only, component truncates
 
 const Index = () => {
+  const base = import.meta.env.BASE_URL || "/";
   const [title, setTitle] = React.useState("☀️ Rewards are up! Redeem Mcoins NOW!");
   const [body, setBody] = React.useState(
     "You can now redeem your earned Mcoins.\nWe truly appreciate your patience!"
   );
-  const [imageUrl, setImageUrl] = React.useState("/lovable-uploads/Right_side_image_url.png");
-  const [appIconUrl, setAppIconUrl] = React.useState("/lovable-uploads/Top_right_moneyview_icon_url.png");
-  const [selectedRightImage, setSelectedRightImage] = React.useState<string>("/lovable-uploads/Right_side_image_url.png");
-  const [rightSideImageOptions, setRightSideImageOptions] = React.useState<string[]>(["/lovable-uploads/Right_side_image_url.png"]);
+  const [imageUrl, setImageUrl] = React.useState(`${base}lovable-uploads/Right_side_image_url.png`);
+  const [appIconUrl, setAppIconUrl] = React.useState(`${base}lovable-uploads/Top_right_moneyview_icon_url.png`);
+  const [selectedRightImage, setSelectedRightImage] = React.useState<string>(`${base}lovable-uploads/Right_side_image_url.png`);
+  const [rightSideImageOptions, setRightSideImageOptions] = React.useState<string[]>([`${base}lovable-uploads/Right_side_image_url.png`]);
 
   React.useEffect(() => {
-    fetch("/api/lovable-uploads")
+    fetch(`${base}api/lovable-uploads`)
       .then((r) => r.json())
       .then((list: string[]) => {
         if (Array.isArray(list) && list.length > 0) {
@@ -94,7 +95,7 @@ const Index = () => {
                   id="imageUrl"
                   value={imageUrl}
                   onChange={(e) => setImageUrl(e.target.value)}
-                  placeholder="/lovable-uploads/Right_side_image_url.png"
+                  placeholder={`${base}lovable-uploads/Right_side_image_url.png`}
                 />
               </div>
 
@@ -108,7 +109,7 @@ const Index = () => {
                   id="appIconUrl"
                   value={appIconUrl}
                   onChange={(e) => setAppIconUrl(e.target.value)}
-                  placeholder="/lovable-uploads/Top_right_moneyview_icon_url.png"
+                  placeholder={`${base}lovable-uploads/Top_right_moneyview_icon_url.png`}
                 />
               </div>
             </div>
