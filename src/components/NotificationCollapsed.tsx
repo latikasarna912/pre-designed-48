@@ -43,7 +43,7 @@ const NotificationCollapsed = ({
 
   return (
     <div 
-      className={`w-[340px] h-[146px] bg-white border border-gray-200 rounded-lg shadow-sm p-4 ${className}`}
+      className={`w-[340px] h-[146px] bg-[#F8F8F8] border border-gray-200 rounded-lg shadow-sm p-4 ${className}`}
       style={{ fontFamily: 'Roboto, system-ui, -apple-system, sans-serif' }}
     >
       <div className="w-[308px] h-[114px] flex flex-col">
