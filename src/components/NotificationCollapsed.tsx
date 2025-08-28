@@ -26,7 +26,7 @@ const NotificationCollapsed = ({
     return text.length > maxLength ? text.slice(0, maxLength) + "…" : text;
   };
 
-  const truncatedTitle = truncateText(title, 36);
+  const truncatedTitle = truncateText(title, 38);
   const truncatedBody = truncateText(body, 84);
 
   // Process title to highlight "TODAY!" in red
