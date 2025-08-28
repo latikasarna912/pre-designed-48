@@ -6,6 +6,7 @@ import fs from "fs";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: '/pre-designed-48/',
   server: {
     host: "::",
     port: 8080,
