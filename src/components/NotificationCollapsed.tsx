@@ -21,28 +21,25 @@ const NotificationCollapsed = ({
   imageUrl,
   className = "",
 }: NotificationCollapsedProps) => {
-  // Truncate text to specified character limits
-  const truncateText = (text: string, maxLength: number) => {
+  // Truncate text to specified character limits (excluding emojis for title)
+  const truncateText = (text: string, maxLength: number, excludeEmojis = false) => {
+    if (excludeEmojis) {
+      // Remove emojis for character counting but keep them in display
+      const textWithoutEmojis = text.replace(/[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+      if (textWithoutEmojis.length <= maxLength) {
+        return text; // Return original with emojis if under limit
+      }
+      // If over limit, truncate but preserve emojis at start
+      const emojiMatch = text.match(/^[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu);
+      const emoji = emojiMatch ? emojiMatch.join('') : '';
+      const textPart = text.replace(/^[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '');
+      return emoji + textPart.slice(0, maxLength - emoji.length) + "…";
+    }
     return text.length > maxLength ? text.slice(0, maxLength) + "…" : text;
   };
 
   const truncatedTitle = title; // Allow title to wrap to next line
   const truncatedBody = truncateText(body, 84);
-
-  // Process title to highlight "TODAY!" in red
-  const renderTitle = (titleText: string) => {
-    const parts = titleText.split(/(TODAY!)/g);
-    return parts.map((part, index) => {
-      if (part === "TODAY!") {
-        return (
-          <span key={index} className="text-[#AF1133]">
-            {part}
-          </span>
-        );
-      }
-      return part;
-    });
-  };
 
   return (
     <div 
@@ -81,7 +78,7 @@ const NotificationCollapsed = ({
           {/* Text content */}
           <div className="w-[248px] h-[86px] flex flex-col">
             <h3 className="text-[13px] font-bold text-black leading-tight mb-2">
-              {renderTitle(truncatedTitle)}
+              {truncatedTitle}
             </h3>
             <p 
               className="text-[13px] text-black leading-tight"
